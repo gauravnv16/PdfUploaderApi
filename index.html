@@ -1,0 +1,43 @@
+<html>
+    <head>
+
+        <style>
+            img{
+                width: 100px;
+                height: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>File upload</h1>
+        <form method="post" action="/api/pdfs">
+            <input type="file"/>
+            <input name="upload-data" id="upload-data" type="text" style="visibility: hidden;"/>
+            <input type="submit" value="Submit"/>
+        </form>
+
+        <h5>Result : </h5>
+        <div id="result"></div>
+
+        <script>
+            
+            var fileInput = document.querySelector('input[type="file"]');
+
+            fileInput.addEventListener('change',function(e) {
+                
+                var file = fileInput.files[0];
+                var reader = new FileReader();
+                    
+                reader.readAsDataURL(file);
+                    reader.onload = (ev) => {
+                        var contents = ev.target.result;
+                        const res = `<object data="${contents}" />`;
+                        document.querySelector('#result').innerHTML = res;
+                        document.querySelector('#upload-data').value = contents;
+                        document.querySelector('form').submit();
+                    };
+
+            });
+        </script>
+    </body>
+</html>
