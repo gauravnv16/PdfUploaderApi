@@ -2,9 +2,14 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const fs = require('fs');
+const cors = require('cors');
 const crypto = require('crypto');
 
 app.use(express.static('public'));
+app.use(cors({
+    origin: '*'
+}));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
