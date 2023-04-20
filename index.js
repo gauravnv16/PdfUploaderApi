@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 app.post('/api/pdfs', (req, res) => {
     const resu = req.body['upload-data'].split(',')[1]
     const fileName = crypto.randomBytes(20).toString('hex');
-    fs.writeFile(__dirname + "/public/" + fileName + '.pdf', resu, 'base64', function(err) {
+    fs.writeFile(__dirname +"/public/"+ fileName + '.pdf', resu, 'base64', function(err) {
         console.log(err);
     });
 
